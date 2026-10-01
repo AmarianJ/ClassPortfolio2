@@ -15,7 +15,7 @@ As an intern With the Western Golf Association I Tracked and documented the prog
 Built a C++ program as part of my CSE coursework at Michigan State University that accepts user input and returns dynamic responses. Implemented core programming concepts including variables, conditional logic, loops, and input/output streams (cin/cout) to create an interactive console experience.
 
 ### Multi Page Websites
-Designed and developed a multi-page website using HTML and CSS as part of my coursework. Structured content across multiple linked pages, applied styling and layout techniques, and incorporated images and navigation to create a functional, user-friendly web experience.
+Built a C++ program as part of my CSE coursework at Michigan State University that accepts user input and returns dynamic responses. Implemented core programming concepts including variables, conditional logic, loops, and input/output streams (cin/cout) to create an interactive console experience.
 
 ### Contact
 Amarian Johnson
