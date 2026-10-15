@@ -12,14 +12,15 @@
 
 :root {
   --color-bg: #ffffff;
-  --color-text: #1a1a1a;
-  --color-muted: #555;
+  --color-text: #14211a;
+  --color-muted: #55635c;
   --color-accent: #006633;        /* MSU green */
   --color-accent-hover: #004d26;
-  --color-border: #e0e0e0;
-  --color-card-bg: #fafafa;
+  --color-border: #e3e7e4;
+  --color-card-bg: #ffffff;
+  --color-soft: #f6f8f6;
 
-  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 
   --space-xs: 0.5rem;
   --space-sm: 1rem;
@@ -27,8 +28,9 @@
   --space-lg: 2.5rem;
   --space-xl: 4rem;
 
-  --radius: 8px;
-  --max-width: 1200px;
+  --radius: 10px;
+  --radius-lg: 16px;
+  --max-width: 1100px;
 }
 
 html {
@@ -37,23 +39,26 @@ html {
 
 body {
   font-family: var(--font-body);
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.65;
   color: var(--color-text);
   background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
   padding: var(--space-sm);
 }
 
 h1, h2, h3 {
-  line-height: 1.2;
-  margin-bottom: var(--space-sm);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--color-text);
 }
 
-h1 { font-size: 1.75rem; }
-h2 { font-size: 1.5rem; margin-top: var(--space-lg); }
-h3 { font-size: 1.15rem; }
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.1rem; }
 
 p {
-  margin-bottom: var(--space-sm);
   color: var(--color-muted);
 }
 
@@ -76,66 +81,75 @@ img {
 }
 
 /* ============================================================
-   HEADER  —  Flexbox (1D: image + nav stack on mobile)
+   HEADER  —  Flexbox (1D: photo + nav)
    ============================================================ */
 
 header {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md) 0;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-sm);
+  max-width: var(--max-width);
+  margin: 0 auto;
   border-bottom: 1px solid var(--color-border);
 }
 
 #profilePic {
-  width: 120px;
-  height: 120px;
+  width: 96px;
+  height: 96px;
   border-radius: 50%;
   object-fit: cover;
   cursor: pointer;
-  transition: transform 0.3s ease;
+  border: 3px solid var(--color-soft);
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 #profilePic:hover {
   transform: scale(1.05);
+  border-color: var(--color-accent);
 }
 
 /* ============================================================
-   NAV  —  Flexbox (1D: list of links)
+   NAV  —  Flexbox (1D: horizontal list of links)
    ============================================================ */
 
 nav ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: var(--space-sm);
+  gap: var(--space-xs);
   list-style: none;
 }
 
 nav a {
+  display: inline-block;
   font-weight: 600;
-  padding: var(--space-xs) var(--space-sm);
+  font-size: 0.95rem;
+  padding: 0.55rem 0.95rem;
   border-radius: var(--radius);
-  transition: background 0.2s ease;
+  color: var(--color-text);
+  transition: background 0.2s ease, color 0.2s ease;
 }
 
-nav a:hover {
-  background: var(--color-card-bg);
+nav a:hover,
+nav a:focus {
+  background: var(--color-soft);
+  color: var(--color-accent);
   text-decoration: none;
 }
 
 /* ============================================================
-   MAIN  —  Grid (2D: full-page container)
+   MAIN  —  Grid (2D: site-level wrapper)
    ============================================================ */
 
 main {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
   max-width: var(--max-width);
   margin: 0 auto;
-  padding: var(--space-md) 0;
+  padding: var(--space-lg) var(--space-sm);
 }
 
 /* ============================================================
@@ -144,21 +158,41 @@ main {
 
 #hero {
   text-align: center;
-  padding: var(--space-md) 0;
+  padding: var(--space-lg) 0 var(--space-md);
 }
 
 #hero h1 {
-  font-size: 2rem;
+  font-size: 2.2rem;
+  margin-bottom: var(--space-sm);
+  letter-spacing: -0.02em;
+}
+
+#hero p {
+  font-size: 1.05rem;
+  max-width: 55ch;
+  margin: 0 auto;
+  color: var(--color-muted);
 }
 
 /* ============================================================
-   ABOUT  —  Grid (bonus 2D: becomes 2-column on large)
+   ABOUT  —  Grid (2D: heading spans, text flows as column)
    ============================================================ */
 
 #about {
   display: grid;
   grid-template-columns: 1fr;
   gap: var(--space-sm);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+#about h2 {
+  grid-column: 1 / -1;
+  margin-bottom: var(--space-xs);
+}
+
+#about p {
+  max-width: 68ch;
 }
 
 /* ============================================================
@@ -167,8 +201,8 @@ main {
    PROMPT USED:
    "Using only CSS (do not modify my HTML), write a mobile-first
    responsive layout for a projects section. The HTML contains a
-   <section id="projects"> with an <h2> and several
-   <article> children, each with an <h3> and a <p>. Requirements:
+   <section id="projects"> with an <h2> and several <article>
+   children, each with an <h3> and a <p>. Requirements:
    - Mobile: single column, stacked cards with 1rem gap
    - Use CSS Grid
    - At min-width 600px: 2 columns
@@ -185,23 +219,38 @@ main {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
 }
 
 #projects h2 {
-  grid-column: 1 / -1;   /* heading spans full row */
+  grid-column: 1 / -1;
+  margin-bottom: var(--space-xs);
 }
 
 #projects article {
   background: var(--color-card-bg);
   border: 1px solid var(--color-border);
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
   padding: var(--space-md);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
 }
 
 #projects article:hover {
   transform: translateY(-4px);
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  border-color: var(--color-accent);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.07);
+}
+
+#projects article h3 {
+  color: var(--color-text);
+}
+
+#projects article p {
+  font-size: 0.95rem;
 }
 
 /* ============================================================
@@ -210,7 +259,21 @@ main {
 
 #contact {
   text-align: center;
-  padding: var(--space-md) 0;
+  padding: var(--space-lg) var(--space-sm);
+  background: var(--color-soft);
+  border-radius: var(--radius-lg);
+}
+
+#contact h2 {
+  margin-bottom: var(--space-sm);
+}
+
+#contact p {
+  font-size: 1.05rem;
+}
+
+#contact a {
+  font-weight: 600;
 }
 
 /* ============================================================
@@ -219,14 +282,15 @@ main {
 
 footer {
   text-align: center;
-  padding: var(--space-md) 0;
-  border-top: 1px solid var(--color-border);
+  padding: var(--space-lg) var(--space-sm) var(--space-md);
   color: var(--color-muted);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
+  max-width: var(--max-width);
+  margin: 0 auto;
 }
 
 /* ============================================================
-   LIGHTBOX  (kept from your existing JS)
+   LIGHTBOX
    ============================================================ */
 
 .lightbox {
@@ -249,13 +313,14 @@ footer {
   max-width: 90%;
   max-height: 90%;
   border-radius: var(--radius);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
 
 /* ============================================================
    MEDIA QUERIES  —  Mobile-first (min-width)
    ============================================================ */
 
-/* ---------- Breakpoint 1: 600px (tablet portrait) ---------- */
+/* ---------- Breakpoint 1: 600px ---------- */
 @media (min-width: 600px) {
   body {
     padding: var(--space-md);
@@ -264,15 +329,19 @@ footer {
   header {
     flex-direction: row;
     justify-content: space-between;
-    padding: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
   }
 
   nav ul {
-    gap: var(--space-md);
+    gap: var(--space-xs);
   }
 
   #hero h1 {
-    font-size: 2.5rem;
+    font-size: 2.6rem;
+  }
+
+  main {
+    padding: var(--space-xl) var(--space-lg);
   }
 
   /* Projects: 2 columns (AI-assisted section) */
@@ -280,24 +349,24 @@ footer {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
   }
-
-  /* About: 2-column text flow on wider screens */
-  #about {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
-/* ---------- Breakpoint 2: 900px (tablet landscape / small laptop) ---------- */
+/* ---------- Breakpoint 2: 900px ---------- */
 @media (min-width: 900px) {
-  h1 { font-size: 2rem; }
   h2 { font-size: 1.75rem; }
 
-  #hero {
-    padding: var(--space-lg) 0;
+  #hero h1 {
+    font-size: 3.2rem;
   }
 
-  #hero h1 {
-    font-size: 3rem;
+  #hero p {
+    font-size: 1.15rem;
+  }
+
+  #about {
+    max-width: 75ch;
+    margin: 0 auto;
+    width: 100%;
   }
 
   /* Projects: 3 columns (AI-assisted section) */
@@ -307,35 +376,38 @@ footer {
   }
 }
 
-/* ---------- Breakpoint 3: 1200px (desktop) ---------- */
+/* ---------- Breakpoint 3: 1200px ---------- */
 @media (min-width: 1200px) {
+  :root {
+    --max-width: 1200px;
+  }
+
   body {
     padding: var(--space-lg);
   }
 
-  main {
-    gap: var(--space-xl);
+  #hero {
+    padding: var(--space-xl) 0 var(--space-lg);
   }
 
   #hero h1 {
     font-size: 3.5rem;
   }
 
-  /* Projects: 4 columns + wider container (AI-assisted section) */
+  /* Projects: 4 columns (AI-assisted section) */
   #projects {
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem;
-    max-width: 1400px;
+    gap: 1.75rem;
   }
 }
 
-/* ---------- Breakpoint 4: 1600px (large desktop — bonus) ---------- */
+/* ---------- Breakpoint 4: 1600px (bonus) ---------- */
 @media (min-width: 1600px) {
   :root {
-    --max-width: 1400px;
+    --max-width: 1360px;
   }
 
   #hero h1 {
-    font-size: 4rem;
+    font-size: 3.9rem;
   }
 }
