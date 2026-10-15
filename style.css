@@ -1,201 +1,341 @@
-/* ============================================
-   5 CSS CUSTOM PROPERTIES (variables)
-   ============================================ */
-:root {
-  --color-primary: #18453b;
-  --color-accent: #c9a227;
-  --color-bg: #fafafa;
-  --color-text: #222222;
-  --font-main: Georgia, "Times New Roman", serif;
-}
+/* ============================================================
+   BASE / RESET  —  Mobile-first
+   ============================================================ */
 
-/* RULESET 1 */
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* RULESET 2 */
+:root {
+  --color-bg: #ffffff;
+  --color-text: #1a1a1a;
+  --color-muted: #555;
+  --color-accent: #006633;        /* MSU green */
+  --color-accent-hover: #004d26;
+  --color-border: #e0e0e0;
+  --color-card-bg: #fafafa;
+
+  --font-body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+
+  --radius: 8px;
+  --max-width: 1200px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
-  font-family: var(--font-main);
+  font-family: var(--font-body);
   line-height: 1.6;
   color: var(--color-text);
-  background-color: var(--color-bg);
+  background: var(--color-bg);
+  padding: var(--space-sm);
 }
 
-/* RULESET 3 */
-header {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  padding: 1.5rem 2rem;
-  text-align: center;
-  border-bottom: 4px solid var(--color-accent);
+h1, h2, h3 {
+  line-height: 1.2;
+  margin-bottom: var(--space-sm);
 }
 
-/* RULESET 4 */
-#profilePic {
-  width: 110px;
-  height: 110px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #ffffff;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  transition: transform 0.2s ease;
-}
+h1 { font-size: 1.75rem; }
+h2 { font-size: 1.5rem; margin-top: var(--space-lg); }
+h3 { font-size: 1.15rem; }
 
-/* RULESET 5 */
-#profilePic:hover {
-  transform: scale(1.08);
-}
-
-/* RULESET 6 */
-nav ul {
-  list-style: none;
-  margin-top: 1rem;
-  padding: 0;
-}
-
-/* RULESET 7 */
-nav li {
-  display: inline-block;
-  margin: 0 0.75rem;
-}
-
-/* RULESET 8 */
-nav a {
-  color: #ffffff;
-  text-decoration: none;
-  font-weight: bold;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-}
-
-/* RULESET 9 */
-nav a:hover {
-  background-color: var(--color-accent);
-  color: var(--color-primary);
-}
-
-/* RULESET 10 */
-main {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 2rem 1.5rem 3rem;
-}
-
-/* RULESET 11 */
-section {
-  padding: 2rem 0;
-  border-bottom: 1px solid #e0e0e0;
-}
-
-/* RULESET 12 */
-section:last-of-type {
-  border-bottom: none;
-}
-
-/* RULESET 13 */
-h1 {
-  font-size: 2.25rem;
-  color: var(--color-primary);
-  margin-bottom: 0.5rem;
-  letter-spacing: 1px;
-}
-
-/* RULESET 14 */
-h2 {
-  font-size: 1.6rem;
-  color: var(--color-primary);
-  margin-bottom: 1rem;
-  border-left: 5px solid var(--color-accent);
-  padding-left: 0.75rem;
-}
-
-/* RULESET 15 */
-h3 {
-  font-size: 1.15rem;
-  color: var(--color-primary);
-  margin-top: 1.25rem;
-  margin-bottom: 0.35rem;
-}
-
-/* RULESET 16 */
 p {
-  margin-bottom: 1rem;
+  margin-bottom: var(--space-sm);
+  color: var(--color-muted);
 }
 
-/* RULESET 17 */
 a {
-  color: var(--color-primary);
+  color: var(--color-accent);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--color-accent-hover);
   text-decoration: underline;
 }
 
-/* RULESET 18 */
-a:hover {
-  color: var(--color-accent);
-}
-
-/* RULESET 19 */
-article {
-  background-color: #ffffff;
-  padding: 1.25rem 1.5rem;
-  margin-bottom: 1rem;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
-
-/* RULESET 20 */
-img[alt] {
+img {
   max-width: 100%;
   height: auto;
-}
-
-/* RULESET 21 */
-footer {
-  text-align: center;
-  padding: 1.5rem;
-  font-size: 0.85rem;
-  color: #666666;
-  background-color: #f0f0f0;
-  border-top: 1px solid #dddddd;
-}
-
-/* RULESET 22 */
-.lightbox {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.85);
-  text-align: center;
-  z-index: 999;
-  cursor: pointer;
-}
-
-/* RULESET 23 */
-.lightbox.open {
   display: block;
 }
 
-/* RULESET 24 */
+/* ============================================================
+   HEADER  —  Flexbox (1D: image + nav stack on mobile)
+   ============================================================ */
+
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+#profilePic {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+#profilePic:hover {
+  transform: scale(1.05);
+}
+
+/* ============================================================
+   NAV  —  Flexbox (1D: list of links)
+   ============================================================ */
+
+nav ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+  list-style: none;
+}
+
+nav a {
+  font-weight: 600;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius);
+  transition: background 0.2s ease;
+}
+
+nav a:hover {
+  background: var(--color-card-bg);
+  text-decoration: none;
+}
+
+/* ============================================================
+   MAIN  —  Grid (2D: full-page container)
+   ============================================================ */
+
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-lg);
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-md) 0;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+#hero {
+  text-align: center;
+  padding: var(--space-md) 0;
+}
+
+#hero h1 {
+  font-size: 2rem;
+}
+
+/* ============================================================
+   ABOUT  —  Grid (bonus 2D: becomes 2-column on large)
+   ============================================================ */
+
+#about {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-sm);
+}
+
+/* ============================================================
+   AI-ASSISTED CSS — Projects Section
+   ------------------------------------------------------------
+   PROMPT USED:
+   "Using only CSS (do not modify my HTML), write a mobile-first
+   responsive layout for a projects section. The HTML contains a
+   <section id="projects"> with an <h2> and several
+   <article> children, each with an <h3> and a <p>. Requirements:
+   - Mobile: single column, stacked cards with 1rem gap
+   - Use CSS Grid
+   - At min-width 600px: 2 columns
+   - At min-width 900px: 3 columns
+   - At min-width 1200px: 4 columns with larger gap and wider max-width
+   - Cards should have a subtle border, padding, rounded corners,
+     and a hover transition (lift + shadow)
+   - Keep it mobile-first. Output CSS only."
+
+   AI OUTPUT (reviewed and kept as-is):
+   ============================================================ */
+
+#projects {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+#projects h2 {
+  grid-column: 1 / -1;   /* heading spans full row */
+}
+
+#projects article {
+  background: var(--color-card-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-md);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+#projects article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+
+#contact {
+  text-align: center;
+  padding: var(--space-md) 0;
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+footer {
+  text-align: center;
+  padding: var(--space-md) 0;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   LIGHTBOX  (kept from your existing JS)
+   ============================================================ */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  cursor: pointer;
+  padding: var(--space-md);
+}
+
+.lightbox.open {
+  display: flex;
+}
+
 .lightbox img {
-  margin-top: 5vh;
   max-width: 90%;
   max-height: 90%;
-  border-radius: 8px;
-  box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+  border-radius: var(--radius);
 }
 
-/* RULESET 25 */
-article p {
-  margin-bottom: 0;
+/* ============================================================
+   MEDIA QUERIES  —  Mobile-first (min-width)
+   ============================================================ */
+
+/* ---------- Breakpoint 1: 600px (tablet portrait) ---------- */
+@media (min-width: 600px) {
+  body {
+    padding: var(--space-md);
+  }
+
+  header {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: var(--space-md);
+  }
+
+  nav ul {
+    gap: var(--space-md);
+  }
+
+  #hero h1 {
+    font-size: 2.5rem;
+  }
+
+  /* Projects: 2 columns (AI-assisted section) */
+  #projects {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.25rem;
+  }
+
+  /* About: 2-column text flow on wider screens */
+  #about {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-/* RULESET 26 */
-section a {
-  font-weight: bold;
+/* ---------- Breakpoint 2: 900px (tablet landscape / small laptop) ---------- */
+@media (min-width: 900px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.75rem; }
+
+  #hero {
+    padding: var(--space-lg) 0;
+  }
+
+  #hero h1 {
+    font-size: 3rem;
+  }
+
+  /* Projects: 3 columns (AI-assisted section) */
+  #projects {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* ---------- Breakpoint 3: 1200px (desktop) ---------- */
+@media (min-width: 1200px) {
+  body {
+    padding: var(--space-lg);
+  }
+
+  main {
+    gap: var(--space-xl);
+  }
+
+  #hero h1 {
+    font-size: 3.5rem;
+  }
+
+  /* Projects: 4 columns + wider container (AI-assisted section) */
+  #projects {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    max-width: 1400px;
+  }
+}
+
+/* ---------- Breakpoint 4: 1600px (large desktop — bonus) ---------- */
+@media (min-width: 1600px) {
+  :root {
+    --max-width: 1400px;
+  }
+
+  #hero h1 {
+    font-size: 4rem;
+  }
 }
