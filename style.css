@@ -63,9 +63,9 @@ p {
 }
 
 a {
-  color: var(--color-accent);
-  text-decoration: none;
-  transition: color 0.2s ease;
+    color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
 }
 
 a:hover,
